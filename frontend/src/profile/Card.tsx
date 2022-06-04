@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import radarData from '../charts/radarData';
-import {Radar} from 'react-chartjs-2';
+import React from 'react'
+import RadarChart from '../charts/RadarChart';
 
 
 type CardProps = {
@@ -13,9 +12,7 @@ type CardProps = {
 export default function Card(props: CardProps) {
 
     const { scaleFactor, image, name, work  } = props;
-    const [chartData, setChartData] = useState(radarData);
-
-    
+    // const [chartData, setChartData] = useState(radarData);
 
     
     const workExperience = () => {
@@ -81,10 +78,7 @@ export default function Card(props: CardProps) {
                     </div>
                     <Header header='OCEAN' scaleFactor={scaleFactor} />
                     <div>
-                        <Radar 
-                            data={chartData}
-                            
-                        />
+                        <RadarChart inputData={[0.5, 0.2, 0.9, 0.7, 1]} />
                     </div>
                 </div>
 
