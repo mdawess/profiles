@@ -1,5 +1,6 @@
 import React from 'react'
 import RadarChart from '../charts/RadarChart';
+import PieChart from '../charts/PieChart';
 
 
 type CardProps = {
@@ -84,7 +85,7 @@ export default function Card(props: CardProps) {
 
                 {/* Second column */}
                 <div>
-
+                    <PieChart inputData={[7.8]} dlabel='Analysis' />
                 </div>
             </div>    
         </div>
