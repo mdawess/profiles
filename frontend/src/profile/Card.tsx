@@ -5,25 +5,23 @@ import PieChart from '../charts/PieChart';
 
 type CardProps = {
     scaleFactor: number;
-    image: any;
-    name: string;
-    work: any;
+    data: any;
 }
 
 export default function Card(props: CardProps) {
 
-    const { scaleFactor, image, name, work  } = props;
+    const { scaleFactor, data  } = props;
     // const [chartData, setChartData] = useState(radarData);
 
     
     const workExperience = () => {
         let workExp = '';
         
-        for (let i = 0; i < work.length; i++) {
+        for (let i = 0; i < data.workExperience.length; i++) {
             if (i === 0) {
-                workExp += work[i];
+                workExp += data.workExperience[i];
             } else {
-                workExp += ', ' + work[i];
+                workExp += ', ' + data.workExperience[i];
             }
         }
 
@@ -52,13 +50,14 @@ export default function Card(props: CardProps) {
                     height: 290 * scaleFactor, 
                     padding: 10,
                     border: '3px solid #3840FF',
+                    borderRadius: 10,
                     alignSelf: 'center',
             }}>
                 {/* First column  */}
                 <div style={{ display: 'flex', flexDirection: 'column', marginTop: 20, marginLeft: 20}}>
                     <img 
                         alt='profile' 
-                        src={image} 
+                        src={data.headshot} 
                         style={{ 
                             width: 80, 
                             height: 80, 
@@ -71,7 +70,7 @@ export default function Card(props: CardProps) {
                             fontWeight: '700',
                             marginTop: 5,
                     }}>
-                        {name}
+                        {data.name}
                     </h2>
                     <Header header='Work Experience' scaleFactor={scaleFactor} />
                     <div>
@@ -79,13 +78,16 @@ export default function Card(props: CardProps) {
                     </div>
                     <Header header='OCEAN' scaleFactor={scaleFactor} />
                     <div>
-                        <RadarChart inputData={[0.5, 0.2, 0.9, 0.7, 1]} />
+                        <RadarChart inputData={data.ocean} />
                     </div>
                 </div>
 
                 {/* Second column */}
-                <div>
-                    <PieChart inputData={[7.8]} dlabel='Analysis' />
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <PieChart value={7.8} skill='Analysis'/>
+                    <PieChart value={7.8} skill='Analysis'/>
+                    <PieChart value={7.8} skill='Analysis'/>
+                    <PieChart value={7.8} skill='Analysis'/>
                 </div>
             </div>    
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Card from './profile/Card';
 import stock from './assets/stock.jpg'
+import sampleData from './sampleData';
 
 function App() {
   const scaleFactor = 1.5;
@@ -12,7 +13,7 @@ function App() {
       alignItems: 'middle', 
       justifyContent: 'center', 
       }}>
-      <Card scaleFactor={scaleFactor} image={stock} name='Jane Doe' work={['McKinsey', 'BMO', 'Motiv']} />
+      <Card scaleFactor={scaleFactor} data={sampleData} />
     </div>
   );
 }

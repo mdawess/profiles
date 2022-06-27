@@ -36,6 +36,20 @@ export default function RadarChart(props: any) {
         borderWidth: 1,
       },
     ],
+    options: {
+      plugins: {
+        legend: {
+            display: false
+        }
+      },
+      tooltips: {
+          callbacks: {
+             label: function(tooltipItem: any) {
+                    return tooltipItem.yLabel;
+             }
+          }
+        }
+    }
   };
 
   return <Radar data={consolData} />;
