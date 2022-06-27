@@ -39,7 +39,12 @@ export default function PieChart(props: any) {
   };
 
   return (
-    <div style={{ alignItems: 'center' }}>
+    <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center',
+        }}
+    >
       <div style={{ width: 85, height: 85 }}>
         <Doughnut data={data} options={{ cutout: 30 }} />
       </div>

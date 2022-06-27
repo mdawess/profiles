@@ -14,14 +14,14 @@ export default function Card(props: CardProps) {
     // const [chartData, setChartData] = useState(radarData);
 
     
-    const workExperience = () => {
+    const formatExperience = (experience: any) => {
         let workExp = '';
         
-        for (let i = 0; i < data.workExperience.length; i++) {
+        for (let i = 0; i < experience.length; i++) {
             if (i === 0) {
-                workExp += data.workExperience[i];
+                workExp += experience[i];
             } else {
-                workExp += ', ' + data.workExperience[i];
+                workExp += ', ' + experience[i];
             }
         }
 
@@ -74,7 +74,7 @@ export default function Card(props: CardProps) {
                     </h2>
                     <Header header='Work Experience' scaleFactor={scaleFactor} />
                     <div>
-                        {workExperience()}
+                        {formatExperience(data.workExperience)}
                     </div>
                     <Header header='OCEAN' scaleFactor={scaleFactor} />
                     <div>
@@ -83,11 +83,46 @@ export default function Card(props: CardProps) {
                 </div>
 
                 {/* Second column */}
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <PieChart value={7.8} skill='Analysis'/>
-                    <PieChart value={7.8} skill='Analysis'/>
-                    <PieChart value={7.8} skill='Analysis'/>
-                    <PieChart value={7.8} skill='Analysis'/>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left'}} >
+                    <Header header='Skill Ratings' scaleFactor={scaleFactor} />
+                    <div style={{ display: 'flex', justifyContent: 'center', }}>
+                        <PieChart value={data.skills.Analysis} skill='Analysis'/>
+                        <PieChart value={data.skills.Strategy} skill='Strategy'/>
+                        <PieChart value={data.skills.Implementation} skill='Implementation'/>
+                        <PieChart value={data.skills.Financials} skill='Financials'/>
+                    </div>
+                    <Header header='Working Style' scaleFactor={scaleFactor} />
+                    <div style={{ marginTop: -30, }}>
+                        <ul>
+                            {data.workingStyle.map((style: string, index: number) => {
+                                return (
+                                    <li key={index}>
+                                        {style}
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </div>
+                    <Header header='Development Goals' scaleFactor={scaleFactor} />
+                    <div>
+                        <ul>
+                            {data.developmentGoals.map((style: string, index: number) => {
+                                return (
+                                    <li key={index}>
+                                        {style}
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </div>
+                    <Header header='Notable Competitions' scaleFactor={scaleFactor} />
+                    <div>
+                        {formatExperience(data.notableCompetitions)}
+                    </div>
+                    <Header header='Research Subject' scaleFactor={scaleFactor} />
+                    <div>
+                        {data.researchSubject}
+                    </div>
                 </div>
             </div>    
         </div>
@@ -104,6 +139,7 @@ const Header = (props: any) => {
                 fontFamily: 'Poppins', 
                 fontWeight: '700',
                 alignItems: 'left',
+                textAlign: 'left',
         }}>
             {header}
         </h4>

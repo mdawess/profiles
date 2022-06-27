@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
 import Card from './profile/Card';
-import stock from './assets/stock.jpg'
 import sampleData from './sampleData';
 
 function App() {
-  const scaleFactor = 1.5;
+  const scaleFactor = 2.5;
 
   return (
     <div className="App" style={{  
