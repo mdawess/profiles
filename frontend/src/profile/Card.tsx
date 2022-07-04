@@ -11,8 +11,6 @@ type CardProps = {
 export default function Card(props: CardProps) {
 
     const { scaleFactor, data  } = props;
-    // const [chartData, setChartData] = useState(radarData);
-
     
     const formatExperience = (experience: any) => {
         let workExp = '';
@@ -36,11 +34,12 @@ export default function Card(props: CardProps) {
                 display: 'flex',
                 width: 500 * scaleFactor, 
                 height: 350 * scaleFactor, 
-                backgroundColor: '#F6F6F6',
+                backgroundColor: 'white',
                 marginTop: 200,
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: 10,
+                boxShadow: '0 5px 10px #D9D9D9',
         }}>
             {/* add the border at this layer, maybe using map over the lines & updating orientation */}
             <div 
@@ -54,14 +53,16 @@ export default function Card(props: CardProps) {
                     alignSelf: 'center',
             }}>
                 {/* First column  */}
-                <div style={{ display: 'flex', flexDirection: 'column', marginTop: 20, marginLeft: 20}}>
+                <div style={{ display: 'flex', flexDirection: 'column', marginTop: 20, marginLeft: 20, paddingRight: 30* scaleFactor}}>
                     <img 
                         alt='profile' 
                         src={data.headshot} 
                         style={{ 
-                            width: 80, 
-                            height: 80, 
-                            borderRadius: 70,
+                            width: 150, 
+                            height: 150, 
+                            borderRadius: 1000,
+                            // Not sure on this
+                            // alignSelf: 'center',
                     }}/>
                     <h2 
                         style={{ 
@@ -69,14 +70,16 @@ export default function Card(props: CardProps) {
                             fontFamily: 'Poppins', 
                             fontWeight: '700',
                             marginTop: 5,
+                            alignSelf: 'left',
+                            marginLeft: -13,
+                            marginBottom: 0
                     }}>
                         {data.name}
                     </h2>
                     <Header header='Work Experience' scaleFactor={scaleFactor} />
-                    <div>
-                        {formatExperience(data.workExperience)}
+                    <div style={{ marginLeft: -100, marginTop: 0 }}>
+                        <h4 style={{ fontSize: 20, fontWeight: 'normal', alignSelf: 'left' }}>{formatExperience(data.workExperience)}</h4>
                     </div>
-                    <Header header='OCEAN' scaleFactor={scaleFactor} />
                     <div>
                         <RadarChart inputData={data.ocean} />
                     </div>
@@ -86,13 +89,13 @@ export default function Card(props: CardProps) {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left'}} >
                     <Header header='Skill Ratings' scaleFactor={scaleFactor} />
                     <div style={{ display: 'flex', justifyContent: 'center', }}>
-                        <PieChart value={data.skills.Analysis} skill='Analysis'/>
-                        <PieChart value={data.skills.Strategy} skill='Strategy'/>
-                        <PieChart value={data.skills.Implementation} skill='Implementation'/>
-                        <PieChart value={data.skills.Financials} skill='Financials'/>
+                        <PieChart value={data.skills.Analysis} skill='Analysis' scaleFactor={scaleFactor}/>
+                        <PieChart value={data.skills.Strategy} skill='Strategy'scaleFactor={scaleFactor}/>
+                        <PieChart value={data.skills.Implementation} skill='Implementation' scaleFactor={scaleFactor}/>
+                        <PieChart value={data.skills.Financials} skill='Financials' scaleFactor={scaleFactor}/>
                     </div>
                     <Header header='Working Style' scaleFactor={scaleFactor} />
-                    <div style={{ marginTop: -30, }}>
+                    <div style={{ marginTop: -30, paddingRight: 0 }}>
                         <ul>
                             {data.workingStyle.map((style: string, index: number) => {
                                 return (
@@ -140,6 +143,7 @@ const Header = (props: any) => {
                 fontWeight: '700',
                 alignItems: 'left',
                 textAlign: 'left',
+                marginTop: 0,
         }}>
             {header}
         </h4>

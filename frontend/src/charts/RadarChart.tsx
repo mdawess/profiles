@@ -29,7 +29,7 @@ export default function RadarChart(props: any) {
     labels: ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'],
     datasets: [
       {
-        label: '',
+        label: 'OCEAN',
         data: inputData,
         backgroundColor: '#3840FF30',
         borderColor: '#3840FF',
@@ -37,10 +37,8 @@ export default function RadarChart(props: any) {
       },
     ],
     options: {
-      plugins: {
         legend: {
             display: false
-        }
       },
       tooltips: {
           callbacks: {
@@ -52,5 +50,9 @@ export default function RadarChart(props: any) {
     }
   };
 
-  return <Radar data={consolData} />;
+  return (
+    <div>
+      <Radar data={consolData} />
+    </div>
+  );
 }

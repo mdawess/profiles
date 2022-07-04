@@ -45,8 +45,8 @@ export default function PieChart(props: any) {
         alignItems: 'center',
         }}
     >
-      <div style={{ width: 85, height: 85 }}>
-        <Doughnut data={data} options={{ cutout: 30 }} />
+      <div style={{ width: 100, height: 100, paddingLeft: 30, paddingRight: 30 }}>
+        <Doughnut data={data} options={{ cutout: 40 }} />
       </div>
       <h4 style={{ marginTop: 2 }}>{props.skill}</h4>
     </div>
