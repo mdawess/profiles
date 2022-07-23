@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import Card from './profile/Card';
+import ProfileCard from './profile/ProfileCard';
 import sampleData from './sampleData';
 
 // Allows for access to firestore database within the react app
-import { db } from './firebase';
+// import { db } from './firebase';
 
 const consolidateData = () => {
   // TODO: Implement this function
@@ -33,12 +33,8 @@ function App() {
   const scaleFactor = 2.5;
 
   return (
-    <div className="App" style={{  
-      display: 'flex', 
-      alignItems: 'middle', 
-      justifyContent: 'center', 
-      }}>
-      <Card scaleFactor={scaleFactor} data={sampleData} />
+    <div className="App">
+      <ProfileCard />
     </div>
   );
 }

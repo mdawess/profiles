@@ -1,23 +1,31 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import '../../App.css'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function PieChart(props: any) {
+type PieChartProps = {
+  skill: string;
+  value: number;
+  colour: string;
+}
+
+export default function PieChart(props: PieChartProps) {
+  const { skill, value, colour } = props;
 
   const data = {
     labels: [],
     datasets: [
       {
         label: '# of Votes',
-        data: [props.value, 10-props.value],
+        data: [value, 10-value],
         backgroundColor: [
-          '#3840FF',
+          colour,
           '#D9D9D9'
         ],
         borderColor: [
-          '#3840FF',
+          colour,
           '#D9D9D9'
         ],
         borderWidth: 1,
@@ -43,12 +51,14 @@ export default function PieChart(props: any) {
         display: 'flex', 
         flexDirection: 'column', 
         alignItems: 'center',
+        paddingLeft: 20,
+        paddingRight: 20,
         }}
     >
-      <div style={{ width: 100, height: 100, paddingLeft: 30, paddingRight: 30 }}>
-        <Doughnut data={data} options={{ cutout: 40 }} />
+      <div className='doughnut-chart'>
+        <Doughnut data={data} options={{ cutout: 35 }} />
       </div>
-      <h4 style={{ marginTop: 2 }}>{props.skill}</h4>
+      <h4 style={{ marginTop: 4, marginBottom: 0 }}>{skill}</h4>
     </div>
   );
 }
