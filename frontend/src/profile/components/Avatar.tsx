@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../App.css'
 
 type AvatarProps = {
     name: string;
@@ -10,36 +11,14 @@ export default function Avatar(props: AvatarProps) {
     
     const { name, colour, image } = props;
 
-    const styles = {
-        container: {
-            display: 'flex',
-            width: 60,
-            height: 60,
-            borderRadius: 999,
-            backgroundColor: colour,
-            justifyContent: 'center',
-            alignItems: 'center',
-        },
-        text: {
-            fontSize: 60 / 2.5,
-            color: 'white',
-            fontWeight: 'bold',
-        },
-        img: {
-            width: 60,
-            height: 60,
-            borderRadius: 999,
-        }
-    };
-
     return (
-        <div style={styles.container} className='avatar-container'>
-            {image != null ? 
+        <div className='avatar'>
+            {image !== '' ? 
                 <div>
-                <img src={image} style={styles.img} />
+                <img src={image} className='avatar-img' alt='headshot'/>
                 </div>
             : 
-                <h1 style={styles.text}>{formatName(name)}</h1>
+                <h1 className='avatar-text'>{formatName(name)}</h1>
             }
         </div>
     );

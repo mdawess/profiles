@@ -51,14 +51,17 @@ export default function PieChart(props: PieChartProps) {
         display: 'flex', 
         flexDirection: 'column', 
         alignItems: 'center',
-        paddingLeft: 20,
-        paddingRight: 20,
+        paddingLeft: 5,
+        paddingRight: 5,
         }}
     >
       <div className='doughnut-chart'>
-        <Doughnut data={data} options={{ cutout: 35 }} />
+        <Doughnut data={data} options={{ cutout: 30 }} />
       </div>
-      <h4 style={{ marginTop: 4, marginBottom: 0 }}>{skill}</h4>
+      <div style={{marginTop: -65}}>
+        <h4>{value.toString()}</h4>
+      </div>
+      <h4 style={{ marginTop: 8, marginBottom: 0, fontSize: 12 }}>{skill}</h4>
     </div>
   );
 }
