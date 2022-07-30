@@ -6,12 +6,13 @@ const sampleData = {
     'headshot': '',
     'workExperience': ['McKinsey', 'BMO', 'Motiv'],
     'ocean': [1 , 0.5, 0.7, 1, 0.1],
-    'skills': {
-        'analysis': 7.8,
-        'strategy': 5.0,
-        'implementation': 8.0,
-        'financials': 4.0
-    },
+    // 'skills': {
+    //     'strategy': 7.8,
+    //     'analysis': 5.0,
+    //     'implementation': 8.0,
+    //     'financials': 4.0
+    // },
+    'skills': [7.8, 5.0, 8.0, 4.0],
     'workingStyle': ['Analytical', 'Strategic', 'Implementation', 'Financials'],
     'developmentGoals': ['Analytical', 'Strategic', 'Implementation', 'Financials'],
     'notableCompetitions': ['JMUCC', 'TUBC', 'ICBC Ethics', 'CBS'],

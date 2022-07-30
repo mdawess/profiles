@@ -4,7 +4,7 @@ import Landing from './landing/Landing';
 import ProfileContainer from './profile/ProfileContainer';
 
 function App() {
-  const [isVerified, setIsVerified] = useState(false)
+  const [isVerified, setIsVerified] = useState(true)
 
   return (
     <div className="App">
