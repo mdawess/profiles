@@ -20,8 +20,8 @@ type Skills = {
 }
 
 export type ProfileData = {
-    name: string;
-    year: string;
+    name: string,
+    year?: string;
     workExperience: string[];
     ocean: number[];
     skills: number[];
@@ -29,20 +29,20 @@ export type ProfileData = {
     developmentGoals: string[];
     notableCompetitions: string[];
     researchSubject: string;
-    headshot: string;
+    headshot?: string;
 }
 
-type ProfileProps = {
+export type ProfileProps = {
     profileData: ProfileData;
 }
 
-export default function ProfileCard(props: any) {
+export default function ProfileCard(props: ProfileData) {
   return (
     <div className='card-container'>
         <div className='left-container'>
             <div className='about-container'>
                 <Avatar name={props.name} image={props.headshot} colour='#00bcd4' />
-                <Name name={props.name} year={props.year} />
+                <Name name={props.name} year={props.year ? props.year : '20XX'} />
             </div>
             <div className='left-experience-container'>
                 <Header header='Work Experience' />

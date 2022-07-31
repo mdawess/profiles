@@ -1,13 +1,16 @@
 import flask
-from flask import jsonify
+from flask import jsonify, render_template
 from flask import request
 import os
 from pull_data import make_competitor_dictionary
 
 app = flask.Flask(__name__)
 
+@app.route('/')
+def hello_world():
+    return render_template('index.html')
 
-@app.route('/', methods=['GET'])
+@app.route('/healthcheck', methods=['GET'])
 def healthCheck():
     return jsonify({'status': 'healthy'}), 200
 
@@ -18,5 +21,5 @@ def get_data():
     return jsonify(data)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=int(
-        os.environ.get("PORT", 8080)), threaded=True)
+    app.run(host="0.0.0.0", port=(int(
+        os.environ.get("PORT", 8080)) or 5000), threaded=True)
