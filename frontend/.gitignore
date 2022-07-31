@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 firebase.ts
+googleForms.ts
 
 # testing
 /coverage

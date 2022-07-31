@@ -1,5 +1,7 @@
+import { ProfileData } from "./profile/ProfileCard";
+
 // Note the actual one would be a list of objects, but this is a sample
-const sampleData = {
+const sampleData: ProfileData = {
     'name': 'Michael Dawes',
     'year': '2023',
     // 'headshot': 'https://e9g2x6t2.rocketcdn.me/wp-content/uploads/2020/11/Professional-Headshot-Poses-Blog-Post.jpg',

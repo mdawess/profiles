@@ -12,14 +12,16 @@ export default function Avatar(props: AvatarProps) {
     const { name, colour, image } = props;
 
     return (
+        
         <div className='avatar'>
-            {image !== '' ? 
-                <div>
-                <img src={image} className='avatar-img' alt='headshot'/>
-                </div>
-            : 
+            {/* {typeof image == undefined || image == ''? 
                 <h1 className='avatar-text'>{formatName(name)}</h1>
-            }
+            :
+                <div>
+                    <img src={image} className='avatar-img' alt='headshot'/>
+                </div>  
+            } */}
+            <h1 className='avatar-text'>{formatName(name)}</h1>
         </div>
     );
 };
