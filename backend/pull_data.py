@@ -23,7 +23,7 @@ headings = result['values'][0]
 
 # helper function
 def mean(numbers):
-    return float(sum(numbers)) / max(len(numbers), 1)
+    return round(float(sum(numbers)) / max(len(numbers), 1), 1)
 
 def make_competitor_dictionary() -> dict:
     """
