@@ -1,9 +1,12 @@
 from unittest import result
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
+import os
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-SERVICE_ACCOUNT_FILE = 'backend/keys.json'
+# SERVICE_ACCOUNT_FILE = './backend/keys.json'
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SERVICE_ACCOUNT_FILE = os.path.join(PROJECT_ROOT, 'backend/keys.json')
 SPREADSHEET_ID = '1AJQDzhBHsfJCwFFfKRGm8hZ5xManZqbfQQ4K--wkq3I'
 RANGE = 'responses!A1:AB200'
 
@@ -59,7 +62,8 @@ def make_competitor_dictionary() -> dict:
 
     return competitor_dict
 
-# print(make_competitor_dictionary(responses))
+if '__main__' == __name__:
+    print(make_competitor_dictionary())
 
 
 

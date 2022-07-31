@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 COPY . ./
 
 # configure the container to run in an executed manner
-CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 3600 server:app
+CMD exec gunicorn --bind :8080 --workers 1 --threads 8 --timeout 3600 server:app
