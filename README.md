@@ -25,7 +25,7 @@ Note: You will need docker (https://www.docker.com/products/docker-hub/) and the
 If you make changes to the server, run
 ```shell
 docker build -t backend . 
-// or if using mac M1
+# or if using mac M1
 docker buildx build --platform linux/amd64 -t backend . 
 ```
 then:
