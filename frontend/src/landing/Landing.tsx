@@ -38,10 +38,10 @@ export default function Landing(props: LandingProps) {
             if (res.status === 'verified') {
               setIsVerified(true);
             } else {
-              alert('Invalid password');
+              setIsVerified(false);
             }
           })
-          mainNavigation();
+          isVerified ? mainNavigation() : alert('Invalid password');
         }
         }>Submit</button>
     </div>
