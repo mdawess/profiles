@@ -31,6 +31,7 @@ export default function Landing(props: LandingProps) {
         <h1 className='landing-text'>Welcome to the RCCT competitor profiles</h1>
         <h3>Please enter your password:</h3>
         <input type='text' placeholder='password' value={password} onChange={handlePassword}></input>
+        <div style={{ padding: 10 }}></div>
         <button onClick={() => {
           verify(password)
           .then((res) => {
