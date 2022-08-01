@@ -17,7 +17,6 @@ def hello_world():
 def healthCheck():
     return jsonify({'status': 'healthy'}), 200
 
-
 @app.route('/api/rcct/prod/getdata', methods=['GET'])
 def get_data():
     data = make_competitor_dictionary()

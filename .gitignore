@@ -3,3 +3,4 @@ links.txt
 keys.json
 .env
 passwords.py
+server.py
