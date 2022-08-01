@@ -15,7 +15,12 @@ def test_get_data():
     # assert response.status_code == 200
     print(response.json())
 
+def test_verify():
+    response = requests.get(TEST_URL + 'verify/' + PASSWORD)
+    # assert response.json()['status'] == 'verified'
+    print(response.json())
+
 if __name__ == '__main__':
     # test_get_data()
-    # test_password()
-    test_healthcheck()
+    test_verify()
+    # test_healthcheck()

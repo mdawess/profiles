@@ -48,6 +48,7 @@ export default function Landing(props: LandingProps) {
           onClick={() => {
           verify(password)
           .then((res) => {
+            console.log(res);
             if (res.status === 'verified') {
               setIsVerified(true);
             } else {
