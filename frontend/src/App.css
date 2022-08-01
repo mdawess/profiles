@@ -17,7 +17,59 @@
 
 .landing-text {
   font-size: 300%;
-  color: #00bcd4;
+  color: #222C3A;
+  justify-content: center;
+  text-align: center;
+  padding: 0px;
+}
+
+.password-text {
+  font-size: 150%;
+  color: grey;
+  justify-content: center;
+  text-align: center;
+}
+
+.password-input {
+  width: 20%;
+  height: 5%;
+  border-radius: 5px;
+  border: none; 
+  background-color: lightgray;
+  color: black;
+  text-indent: 6px;
+  font-size: 100%;
+  font-weight: 600;
+}
+
+.password-input:focus {
+  outline: none;
+}
+
+.landing-button {
+  width: 10%;
+  height: 5%;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 100%;
+  color: white;
+  background-color: #293647;
+  box-shadow: 0 5px 0 #171e28;
+}
+.landing-button:active {
+  box-shadow: none;
+  transform: translateY(3px);
+}
+
+.error-text {
+  font-size: 100%;
+  color: red;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: -5px;
 }
 
 /* 
