@@ -3,8 +3,10 @@ from flask import jsonify, render_template
 from flask import request
 import os
 from pull_data import make_competitor_dictionary
+from flask_cors import CORS
 
 app = flask.Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def hello_world():
@@ -15,7 +17,7 @@ def healthCheck():
     return jsonify({'status': 'healthy'}), 200
 
 
-@app.route('/getdata', methods=['GET'])
+@app.route('/api/rcct/prod/getdata', methods=['GET'])
 def get_data():
     data = make_competitor_dictionary()
     return jsonify(data)

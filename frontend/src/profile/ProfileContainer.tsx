@@ -13,7 +13,7 @@ export default function ProfileContainer() {
 
   const getProfileData = async () => {
     const baseURL = 'https://rcct-profiles.herokuapp.com/';
-    const response = await fetch(baseURL + 'getdata', {
+    const response = await fetch(baseURL + 'api/rcct/prod/getdata', {
       method: 'GET',
     });
     const data = await response.json();
