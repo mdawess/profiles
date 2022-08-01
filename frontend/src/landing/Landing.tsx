@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react'
-// import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Navigate } from "react-router-dom";
 
-export default function Landing() {
+type LandingProps = {
+  mainNavigation: Function;
+}
+
+export default function Landing(props: LandingProps) {
+  const { mainNavigation } = props;
   
   const [isVerified, setIsVerified] = useState(false);
   const [password, setPassword ] = useState('');
+  const navigate = useNavigate();
 
   const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
@@ -17,12 +23,6 @@ export default function Landing() {
       method: 'GET',
     });
     const data = await response.json();
-    console.log(data);
-    // if (data.status === 'verified') {
-    //   setIsVerified(true);
-    // } else {
-    //   alert('Invalid password');
-    // }
     return data;
   }
 
@@ -34,12 +34,13 @@ export default function Landing() {
         <button onClick={() => {
           verify(password)
           .then((res) => {
-            console.log(res)  
-            // isVerified ? 
-            // // navigate('/profile-container') :
-            // <Navigate to="/profile-container" replace={true} /> :
-            // <div>Invalide Password!</div>;
+            if (res.status === 'verified') {
+              setIsVerified(true);
+            } else {
+              alert('Invalid password');
+            }
           })
+          mainNavigation();
         }
         }>Submit</button>
     </div>
