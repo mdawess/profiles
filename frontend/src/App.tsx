@@ -1,22 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 import Landing from './landing/Landing';
+import { Route, Routes } from 'react-router-dom';
 import ProfileContainer from './profile/ProfileContainer';
 
 function App() {
-  const [isVerified, setIsVerified] = useState(true)
 
   return (
-    <div className="App">
-      {/* add a password screen */}
-      {isVerified ? 
-        <ProfileContainer /> 
-        : 
-        <Landing 
-          isVerified={isVerified} 
-          setIsVerified={setIsVerified} 
-        />
-      }
+    <div className='app'>
+      <Routes>
+        <Route path="/" element={<Landing/>}/>
+        <Route path="/profile-container" element={<ProfileContainer />}/>
+      </Routes>
     </div>
   );
 }

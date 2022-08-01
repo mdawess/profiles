@@ -4,6 +4,7 @@ from flask import request
 import os
 from pull_data import make_competitor_dictionary
 from flask_cors import CORS
+from passwords import check_password
 
 app = flask.Flask(__name__)
 CORS(app)
@@ -21,6 +22,14 @@ def healthCheck():
 def get_data():
     data = make_competitor_dictionary()
     return jsonify(data)
+
+@app.route('/verify/<string:password>', methods=['GET'])
+def verify(password: str):
+    if check_password(password):
+        return jsonify({'status': 'verified'})
+    else:
+        return jsonify({'status': 'unverified'})
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=(int(
