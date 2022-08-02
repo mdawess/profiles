@@ -14,7 +14,7 @@ export default function Avatar(props: AvatarProps) {
     return (
         
         <div className='avatar'>
-            {typeof(image) === undefined || image == ''? 
+            {typeof(image) === undefined || image === ''? 
                 <h1 className='avatar-text'>{formatName(name)}</h1>
             :
                 <div>
