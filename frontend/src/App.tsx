@@ -14,12 +14,10 @@ function App() {
   return (
     <div className='app'>
       <Routes>
-        {/* <Route path="/" element={<Landing mainNavigation={navigateMain}/>}/> */}
-        {/* <Route path="/secret/protected---446/profile-container" element={<ProfileContainer />}/> */}
-        <Route path="/" element={<ProfileContainer />}/>
+        <Route path="/" element={<Landing mainNavigation={navigateMain}/>}/>
+        <Route path="/secret/protected---446/profile-container" element={<ProfileContainer />}/>
+        {/* <Route path="/" element={<ProfileContainer />}/> */}
       </Routes>
-
-      {/* <button onClick={navigateMain}>Go to profile</button> */}
     </div>
   );
 }

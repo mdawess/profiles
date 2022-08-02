@@ -22,7 +22,7 @@ def get_data():
     data = make_competitor_dictionary()
     return jsonify(data)
 
-@app.route('/verify/<string:password>', methods=['GET'])
+@app.route('/verify/<string:password>', methods=['POST'])
 def verify(password: str):
     if check_password(password):
         return jsonify({'status': 'verified'})

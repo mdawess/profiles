@@ -1,15 +1,12 @@
 import React, { useMemo, useState } from 'react';
-
-import sampleData from '../sampleData';
 import Search from './Search';
-import ProfileCard, { ProfileData, ProfileProps } from './ProfileCard';
+import ProfileCard, { ProfileProps } from './ProfileCard';
 
 
 
 export default function ProfileContainer() {
 
   const [profileData, setProfileData] = useState({} as ProfileProps);
-  const [loading, setLoading] = useState(true);
 
   const getProfileData = async () => {
     const baseURL = 'https://rcct-profiles.herokuapp.com/';
@@ -19,7 +16,6 @@ export default function ProfileContainer() {
     const data = await response.json();
     console.log(data);
     setProfileData(data);
-    setLoading(false);
   }
 
   // Create the mapable data object
@@ -28,7 +24,7 @@ export default function ProfileContainer() {
     let data: keyof typeof profileData;
     let i: number = 0;
     for (data in profileData) {
-      if ('ocean' in profileData[data]) {
+      if ('ocean' in profileData[data] && typeof(data) === 'string') {
         mappedData.push(
             <ProfileCard
               key={i}
@@ -60,12 +56,7 @@ export default function ProfileContainer() {
         <Search />
       </div>
       <div className='profile-container'>
-        {/* <ProfileCard profileData={sampleData} name='Michael Dawes'/>
-        <ProfileCard profileData={sampleData} name='Michael Dawes'/>
-        <ProfileCard profileData={sampleData} name='Michael Dawes'/>
-        <ProfileCard profileData={sampleData} name='Michael Dawes'/> */}
         {mapProfileData()}
-        
       </div>
     </div>
     

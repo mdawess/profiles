@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import { Navigate } from "react-router-dom";
 import '../App.css';
 
 type LandingProps = {
@@ -13,7 +11,6 @@ export default function Landing(props: LandingProps) {
   const [isVerified, setIsVerified] = useState(false);
   const [valid, setValid] = useState(true);
   const [password, setPassword ] = useState('');
-  const navigate = useNavigate();
 
   const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
@@ -22,10 +19,21 @@ export default function Landing(props: LandingProps) {
   const verify = async (password: string) => {
     const baseURL = 'https://rcct-profiles.herokuapp.com/verify/';
     const response = await fetch(baseURL + password, {
-      method: 'GET',
+      method: 'POST',
     });
     const data = await response.json();
+    console.log(data);
     return data;
+  }
+
+  const handleSubmit  = () => {
+    verify(password).then(data => {
+      if (data.status === 'verified') {
+        mainNavigation();
+      } else {
+        setValid(false);
+      }
+    })
   }
 
   return (
@@ -45,19 +53,7 @@ export default function Landing(props: LandingProps) {
         </div>
         <button 
           className='landing-button'
-          onClick={() => {
-          verify(password)
-          .then((res) => {
-            console.log(res);
-            if (res.status === 'verified') {
-              setIsVerified(true);
-            } else {
-              setIsVerified(false);
-            }
-          })
-          isVerified ? mainNavigation() : setValid(false);
-        }
-        }>Submit</button>
+          onClick={() => handleSubmit()}>Submit</button>
     </div>
   );
 }

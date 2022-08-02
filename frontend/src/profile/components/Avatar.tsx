@@ -14,19 +14,24 @@ export default function Avatar(props: AvatarProps) {
     return (
         
         <div className='avatar'>
-            {/* {typeof image == undefined || image == ''? 
+            {typeof(image) === undefined || image == ''? 
                 <h1 className='avatar-text'>{formatName(name)}</h1>
             :
                 <div>
                     <img src={image} className='avatar-img' alt='headshot'/>
                 </div>  
-            } */}
-            <h1 className='avatar-text'>{formatName(name)}</h1>
+            }
         </div>
     );
 };
 
+// Need to fix the names to make sure they're full
 const formatName = (name: string) => {
-    const nameArray = name.split(' ');
-    return nameArray[0][0] + nameArray[1][0];
+    const formattedName = name.trimEnd().split(' ');
+    if (formattedName.length > 1) {
+        return formattedName[0][0] + formattedName[1][0];
+    } else {
+        return formattedName[0][0]
+    }
 }
+    

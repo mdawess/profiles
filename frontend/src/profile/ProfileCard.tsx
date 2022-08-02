@@ -11,14 +11,6 @@ import Experience from './components/Experience';
 
 // All data is currently hardcoded for development purposes.
 
-// May be deleted depending on incoming data structure
-type Skills = {
-    analysis: number,
-    strategy: number,
-    implementation: number,
-    financials: number
-}
-
 export type ProfileData = {
     name: string,
     year?: string;
