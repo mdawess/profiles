@@ -1,6 +1,7 @@
 from unittest import result
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
+from competitors import grad_years
 import os
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
@@ -25,6 +26,14 @@ headings = result['values'][0]
 def mean(numbers):
     return round(float(sum(numbers)) / max(len(numbers), 1), 1)
 
+def get_grad_year(competitor_name: str) -> int:
+    """
+    Takes a competitor name and returns their graduation year.
+    """
+    for grad_year in grad_years:
+        if competitor_name in grad_years[grad_year]:
+            return grad_year
+
 def make_competitor_dictionary() -> dict:
     """
     Takes a list of responses and returns a dictionary of competitor names and their responses.
@@ -41,6 +50,7 @@ def make_competitor_dictionary() -> dict:
                 'developmentGoals': response[14].split(','),
                 'notableCompetitions': response[15].split(','),
                 'researchSubject': response[16],
+                'year': get_grad_year(response[1]),
                 'headshot': ''
             }
         elif response[1] not in competitor_dict and response[2] == 'Yes':
@@ -60,12 +70,15 @@ def make_competitor_dictionary() -> dict:
             competitor_dict[response[1]]['developmentGoals'] = response[14].split(',')
             competitor_dict[response[1]]['notableCompetitions'] = response[15].split(',')
             competitor_dict[response[1]]['researchSubject'] = response[16]
+            competitor_dict[response[1]]['year'] = get_grad_year(response[1])
             competitor_dict[response[1]]['headshot'] = ''
 
     return competitor_dict
 
 if '__main__' == __name__:
-    print(make_competitor_dictionary())
+    # print(make_competitor_dictionary())
+    # print(get_grad_year('Michael Dawes'))
+    pass
 
 
 
