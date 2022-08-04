@@ -1,11 +1,19 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import Search from './Search';
 import ProfileCard, { ProfileProps } from './ProfileCard';
+import staticRealData from '../staticRealData';
+import loading from '../assets/loading/loading.svg';
 
-
+type ProfileContainerProps = {
+  data: {
+    profile: ProfileProps;
+  }
+}
 
 export default function ProfileContainer() {
 
+  // add the static real data to help with cold starts
+  // const [profileData, setProfileData] = useState(staticRealData as unknown as ProfileProps);
   const [profileData, setProfileData] = useState({} as ProfileProps);
 
   const getProfileData = async () => {
@@ -46,18 +54,22 @@ export default function ProfileContainer() {
     return mappedData;
   }
 
-  useMemo(() => {
+  useEffect(() => {
     getProfileData();
   }, []);
   
   return (
     <div className='main'>
-      <div className='search-container'>
-        <Search />
-      </div>
-      <div className='profile-container'>
-        {mapProfileData()}
-      </div>
+      {Object.keys(profileData).length === 0 ? <div className='loading'><img src={loading} alt='loading'/></div> :
+      <div>
+        <div className='search-container'>
+          <Search />
+        </div>
+        <div className='profile-container'>
+          {mapProfileData()}
+        </div>
+      </div> 
+    }
     </div>
     
   )

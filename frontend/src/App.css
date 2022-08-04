@@ -3,6 +3,10 @@
   display: 'flex';
 }
 
+.loading {
+  padding: 20rem;
+}
+
 /* 
   Landing page styling
 */
@@ -76,9 +80,12 @@
   Main profiles styling
 */
 .main {
+  display: flex;
+  align-content: center;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+
 }
 
 /* 
