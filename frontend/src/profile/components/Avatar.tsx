@@ -13,7 +13,7 @@ export default function Avatar(props: AvatarProps) {
 
     return (
         
-        <div className='avatar'>
+        <div className='avatar' style={{ backgroundColor: colour }}>
             {typeof(image) === undefined || image === ''? 
                 <h1 className='avatar-text'>{formatName(name)}</h1>
             :

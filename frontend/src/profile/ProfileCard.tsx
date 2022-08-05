@@ -22,50 +22,54 @@ export type ProfileData = {
     notableCompetitions: string[];
     researchSubject: string;
     headshot?: string;
+    colour?: string;
 }
 
 export type ProfileProps = {
     profileData: ProfileData;
 }
 
-export default function ProfileCard(props: ProfileData) {
-  return (
-    <div className='card-container'>
-        <div className='left-container'>
-            <div className='about-container'>
-                <Avatar name={props.name} image={props.headshot} colour='#00bcd4' />
-                <Name name={props.name} year={props.year ? props.year : '20XX'} />
+export default function ProfileCard(props: ProfileProps) {
+    // const colour = '#171e28'
+    const colour = '#00bcd4'
+
+    return (
+        <div className='card-container'>
+            <div className='left-container'>
+                <div className='about-container'>
+                    <Avatar name={props.profileData.name} image={props.profileData.headshot} colour={colour} />
+                    <Name name={props.profileData.name} year={props.profileData.year ? props.profileData.year : '20XX'} />
+                </div>
+                <div className='left-experience-container'>
+                    <Header header='Work Experience' />
+                    <Experience experiences={props.profileData.workExperience} />
+                    <Spacer width={30} />
+                    <Header header='OCEAN' />
+                    <RadarChart inputData={props.profileData.ocean} colour={colour}/>
+                </div>
             </div>
-            <div className='left-experience-container'>
-                <Header header='Work Experience' />
-                <Experience experiences={props.workExperience} />
+            <div className='right-container'>
+                <Header header='Skills' />
+                <div className='skills-container'>
+                    <PieChart skill='Analysis' value={props.profileData.skills[0]} colour={colour} />
+                    <PieChart skill='Strategy' value={props.profileData.skills[1]} colour={colour} />
+                    <PieChart skill='Implementation' value={props.profileData.skills[2]} colour={colour} />
+                    <PieChart skill='Financials' value={props.profileData.skills[3]} colour={colour} />
+                </div>
                 <Spacer width={30} />
-                <Header header='OCEAN' />
-                <RadarChart inputData={props.ocean} colour='#00bcd4'/>
+                <Header header='Working Style' />
+                <div className='working-style-container'>
+                    <List listItens={props.profileData.workingStyle} />
+                </div>
+                <Header header='Development Goals' />
+                <div className='working-style-container'>
+                    <List listItens={props.profileData.developmentGoals} />
+                </div>
+                <Header header='Notable Competitions' />
+                <Experience experiences={props.profileData.notableCompetitions} />
+                <Header header='Research Focus' />
+                {props.profileData.researchSubject}
             </div>
         </div>
-        <div className='right-container'>
-            <Header header='Skills' />
-            <div className='skills-container'>
-                <PieChart skill='Analysis' value={props.skills[0]} colour='#00bcd4' />
-                <PieChart skill='Strategy' value={props.skills[1]} colour='#00bcd4' />
-                <PieChart skill='Implementation' value={props.skills[2]} colour='#00bcd4' />
-                <PieChart skill='Financials' value={props.skills[3]} colour='#00bcd4' />
-            </div>
-            <Spacer width={30} />
-            <Header header='Working Style' />
-            <div className='working-style-container'>
-                <List listItens={props.workingStyle} />
-            </div>
-            <Header header='Development Goals' />
-            <div className='working-style-container'>
-                <List listItens={props.developmentGoals} />
-            </div>
-            <Header header='Notable Competitions' />
-            <Experience experiences={props.notableCompetitions} />
-            <Header header='Research Focus' />
-            {props.researchSubject}
-        </div>
-    </div>
   )
 }

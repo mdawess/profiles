@@ -29,7 +29,7 @@ export default function RadarChart(props: ChartProps) {
     const { inputData, colour } = props;
 
     const consolData = {
-        labels: ['O', 'C', 'E', 'A', 'N'],
+        labels: ['O', 'N', 'A', 'E', 'C'],
         // labels: ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'],
         datasets: [
         {

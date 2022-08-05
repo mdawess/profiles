@@ -43,7 +43,7 @@ export default function Landing(props: LandingProps) {
         <input 
           className='password-input'
           type='text' 
-          placeholder='password' 
+          placeholder='Password' 
           value={password} 
           onChange={handlePassword}
         ></input>

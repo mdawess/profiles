@@ -1,4 +1,3 @@
-from unittest import result
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from competitors import grad_years
@@ -24,6 +23,7 @@ headings = result['values'][0]
 
 # helper function
 def mean(numbers):
+    """Calculates the mean of a list of numbers"""
     return round(float(sum(numbers)) / max(len(numbers), 1), 1)
 
 def get_grad_year(competitor_name: str) -> int:
@@ -43,7 +43,9 @@ def make_competitor_dictionary() -> dict:
     for response in responses:
         if response[1] not in competitor_dict and response[2] == 'No':
             competitor_dict[response[1]] = {
-                'ocean': [int(response[3]), int(response[4]), int(response[5]), int(response[6]), int(response[7])],
+                # 3: O, 4: C, 5: E, 6: A, 7: N -> On the original sheet
+                # This is altered to fit w/ frontend code
+                'ocean': [int(response[3]), int(response[7]), int(response[6]), int(response[5]), int(response[4])],
                 'skills': [int(response[8]), int(response[9]), int(response[10]), int(response[11])],
                 'workExperience': response[12].split(','),
                 'workingStyle': response[13].split(','),

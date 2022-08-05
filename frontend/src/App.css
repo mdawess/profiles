@@ -4,9 +4,69 @@
 }
 
 .loading {
+  display: flex;
   padding: 20rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #171e28;
+  width: 100vw;
 }
 
+.loading > h1 {
+  padding-top: 20px;
+  font-size: x-large;
+  color: white;
+}
+
+/* 
+  Navbar
+*/
+
+.nav-main {
+  display: flex;
+  background-color: #171e28;
+  width: 100vw;
+  padding: 0;
+  margin-top: 0;
+  z-index: 0;
+  position: sticky;
+  top: 0;
+  height: 80px;
+  align-items: center;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 35px;
+  align-items: center;
+  width: 70%;
+}
+
+.nav-logo {
+  border-radius: 5px;
+}
+
+.search {
+  padding: 30px;
+  width: 100%;
+  height: 30%;
+}
+
+.search-input {
+  border-radius: 5px;
+  border: 1px solid #6888b6;
+  padding: 10px;
+  width: 100%;
+  font-size: 1.2rem;
+  color: #171e28;
+  font-weight: 600;
+}
+
+.search-input:focus {
+  outline: 1.5px solid #87b2ed;
+}
 /* 
   Landing page styling
 */
@@ -16,20 +76,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+  height: 100vh;
+  background-color: #171e28;
 }
 
 .landing-text {
   font-size: 300%;
-  color: #222C3A;
+  color: white;
   justify-content: center;
   text-align: center;
   padding: 0px;
+  margin: 0;
+  margin-bottom: 10px;
 }
 
 .password-text {
   font-size: 150%;
-  color: grey;
+  color: white;
   justify-content: center;
   text-align: center;
 }
@@ -39,7 +102,7 @@
   height: 5%;
   border-radius: 5px;
   border: none; 
-  background-color: lightgray;
+  background-color: white;
   color: black;
   text-indent: 6px;
   font-size: 100%;
@@ -57,9 +120,9 @@
   border-radius: 10px;
   font-weight: bold;
   font-size: 100%;
-  color: white;
-  background-color: #293647;
-  box-shadow: 0 5px 0 #171e28;
+  color: black;
+  background-color: white;
+  box-shadow: 0 5px 0 rgb(207, 207, 207);
 }
 .landing-button:active {
   box-shadow: none;
@@ -85,7 +148,7 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-
+  padding: 0;
 }
 
 /* 
@@ -101,14 +164,7 @@
   flex-direction: row;
   width: 100%;
   flex-wrap: wrap;
-  margin-top: 80px;
-}
-
-.search-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  margin-top: 20px;
 }
 
 /* 
@@ -120,7 +176,6 @@
   max-width: 650px;
   margin: 0 auto;
   box-shadow: 0 5px 10px #D9D9D9;
-  /* background-color: blue; */
   border-radius: 20px;
   margin-bottom: 20px;
 }
@@ -130,12 +185,13 @@
 */
 .avatar {
   display: flex;
-  border-radius: 1000px;
+  border-radius: 999px;
   justify-content: center;
   align-items: center;
-  background-color: #00bcd4;
-  width: 85px;
-  height: 60px;
+  aspect-ratio: 1;
+  width: 70px;
+  height: 70px;
+  margin-right: 20px;
 }
 
 .avatar-text {
@@ -150,19 +206,18 @@
   border-radius: 999px;
 }
 
-/* 
-  Container for the picture, name, and grad year
-*/
 .about-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 }
 
 .name-container {
   padding: 0;
   margin: 0;
-  margin-left: 20px;
+  align-self: right;
+  justify-self: flex-end;
 }
 
 .name-container > h1 {
@@ -184,7 +239,8 @@
 }
 
 .left-container {
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
+  background-color: rgb(242, 247, 251);
   border-radius: 20px;
   padding: 20px;
   max-width: 30%;
