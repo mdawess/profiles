@@ -38,7 +38,7 @@ export default function ProfileCard(props: ProfileProps) {
             <div className='left-container'>
                 <div className='about-container'>
                     <Avatar name={props.profileData.name} image={props.profileData.headshot} colour={colour} />
-                    <Name name={props.profileData.name} year={props.profileData.year ? props.profileData.year : '20XX'} />
+                    <Name name={props.profileData.name} year={props.profileData.year ? props.profileData.year : props.profileData.name === 'Tim Chevalier' ? '2023' : '20XX'} />
                 </div>
                 <div className='left-experience-container'>
                     <Header header='Work Experience' />

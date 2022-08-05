@@ -30,7 +30,7 @@ export default function ProfileContainer() {
     let data: keyof typeof object;
     for (data in object) {
       if (object[data].ocean) {
-      newArray.push({...object[data], 'name': data})
+      newArray.push({...object[data], 'name': data.trim()})
       }
     }
     return newArray
