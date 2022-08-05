@@ -47,8 +47,7 @@ export default function ProfileContainer() {
   } 
 
   useMemo(() => {
-    // getProfileData();
-    console.log(profileData)
+    getProfileData();
   }, []);
   
   return (
