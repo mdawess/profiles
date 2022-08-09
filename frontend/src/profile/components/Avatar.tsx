@@ -25,7 +25,6 @@ export default function Avatar(props: AvatarProps) {
     );
 };
 
-// Need to fix the names to make sure they're full
 const formatName = (name: string) => {
     const formattedName = name.trimEnd().split(' ');
     if (formattedName.length > 1) {

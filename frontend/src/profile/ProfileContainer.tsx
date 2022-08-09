@@ -1,10 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import ProfileCard, { ProfileProps, ProfileData } from './ProfileCard';
-import staticRealData from '../staticRealData';
-import staticShortData from '../staticShortData';
 import loading from '../assets/loading/loading.svg';
 import Navbar from './components/Navbar';
-import usableData from '../setupTests';
 
 export type ProfileContainerProps = {
   data: {
@@ -14,14 +11,6 @@ export type ProfileContainerProps = {
 
 export default function ProfileContainer() {
 
-  // add the static real data for offline work/testing
-  // const [profileData, setProfileData] = useState(staticShortData as unknown as ProfileProps);
-  // For the current live version
-  // const [profileData, setProfileData] = useState({} as ProfileProps);
-
-  // Offline testing of new model
-  // const [profileData, setProfileData] = useState(usableData as ProfileData[]);
-  // For the new live version
   const [profileData, setProfileData] = useState([] as ProfileData[]);
   const [query, setQuery] = useState('');
 
@@ -60,7 +49,6 @@ export default function ProfileContainer() {
       <div>
           <Navbar setQuery={setQuery} />
         <div className='profile-container'>
-          {/* {mapProfileData()} */}
           {
             profileData.filter(profile => {
               if (profile.name && query === '') {

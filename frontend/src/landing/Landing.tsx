@@ -5,6 +5,7 @@ type LandingProps = {
   mainNavigation: Function;
 }
 
+// Not currently working due to server issues
 export default function Landing(props: LandingProps) {
   const { mainNavigation } = props;
   

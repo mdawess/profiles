@@ -1,4 +1,4 @@
-import { ProfileData } from "./profile/ProfileCard";
+import { ProfileData } from "../profile/ProfileCard";
 
 const staticShortData: ProfileData[] = [
     {

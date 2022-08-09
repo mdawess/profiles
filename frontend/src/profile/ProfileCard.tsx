@@ -9,8 +9,6 @@ import RadarChart from './components/RadarChart';
 import Spacer from './components/Spacer';
 import Experience from './components/Experience';
 
-// All data is currently hardcoded for development purposes.
-
 export type ProfileData = {
     name: string,
     year?: string;
