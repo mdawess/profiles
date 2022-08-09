@@ -5,11 +5,11 @@
 ### Frontend
 After cloning the repository, ensure you have node installed on your computer and run the following command to install node modules.
 ```
-npm install
+cd frontend
 ```
 then
 ```
-npm install --save chart.js
+npm install
 ```
 Following this, run:
 ```
