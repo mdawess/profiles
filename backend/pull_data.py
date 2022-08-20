@@ -80,14 +80,15 @@ def make_competitor_dictionary() -> dict:
             competitor_dict[response[1]]['ocean'] = [int(response[3]), int(response[4]), int(response[5]), int(response[6]), int(response[7])]
             competitor_dict[response[1]]['workExperience'] = response[12].split(',')
             competitor_dict[response[1]]['workingStyle'] = response[13].split(',')
-            competitor_dict[response[1]]['developmentGoals'] = response[14].split(',')
             competitor_dict[response[1]]['notableCompetitions'] = response[15].split(',')
             competitor_dict[response[1]]['year'] = get_grad_year(response[1])
             competitor_dict[response[1]]['headshot'] = ''
             try:
                 competitor_dict[response[1]]['researchSubject'] = response[16]
+                competitor_dict[response[1]]['developmentGoals'] = response[14].split(',')
             except:
                 competitor_dict[response[1]]['researchSubject'] = ''
+                competitor_dict[response[1]]['developmentGoals'] = ''
 
     return competitor_dict
 
