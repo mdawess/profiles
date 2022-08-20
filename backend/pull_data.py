@@ -51,10 +51,14 @@ def make_competitor_dictionary() -> dict:
                 'workingStyle': response[13].split(','),
                 'developmentGoals': response[14].split(','),
                 'notableCompetitions': response[15].split(','),
-                'researchSubject': response[16],
+                'researchSubject': '',
                 'year': get_grad_year(response[1]),
                 'headshot': ''
             }
+            try:
+                competitor_dict[response[1]]['researchSubject'] = response[16]
+            except:
+                pass
         elif response[1] not in competitor_dict and response[2] == 'Yes':
             competitor_dict[response[1]] = {
                 'skills': [int(response[17]), int(response[18]), int(response[19]), int(response[20])],
@@ -71,9 +75,12 @@ def make_competitor_dictionary() -> dict:
             competitor_dict[response[1]]['workingStyle'] = response[13].split(',')
             competitor_dict[response[1]]['developmentGoals'] = response[14].split(',')
             competitor_dict[response[1]]['notableCompetitions'] = response[15].split(',')
-            competitor_dict[response[1]]['researchSubject'] = response[16]
             competitor_dict[response[1]]['year'] = get_grad_year(response[1])
             competitor_dict[response[1]]['headshot'] = ''
+            try:
+                competitor_dict[response[1]]['researchSubject'] = response[16]
+            except:
+                competitor_dict[response[1]]['researchSubject'] = ''
 
     return competitor_dict
 
