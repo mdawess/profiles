@@ -66,7 +66,10 @@ def make_competitor_dictionary() -> dict:
             }
         elif response[1] in competitor_dict and response[2] == 'Yes':
             competitor_dict[response[1]]['skills'] = [mean(i) for i in zip(competitor_dict[response[1]]['skills'],[int(response[17]), int(response[18]), int(response[19]), int(response[20])])]
-            competitor_dict[response[1]]['workingStyle'].append(response[21].split(','))
+            try:
+                competitor_dict[response[1]]['workingStyle'].append(response[21].split(','))
+            except:
+                pass
         elif response[1] in competitor_dict and response[2] == 'No':
             competitor_dict[response[1]]['skills'] = [mean(i) for i in zip(competitor_dict[response[1]]['skills'],[int(response[8]), int(response[9]), int(response[10]), int(response[11])])]
             competitor_dict[response[1]]['workingStyle'].append(response[13].split(','))
