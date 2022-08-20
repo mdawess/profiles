@@ -12,7 +12,7 @@ def test_healthcheck():
     print(response.json())
 
 def test_get_data():
-    response = requests.get(REAL_URL + 'api/rcct/prod/getdata')
+    response = requests.get(TEST_URL + 'api/rcct/prod/getdata')
     # assert response.status_code == 200
     print(response.json())
 

@@ -1,6 +1,7 @@
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from competitors import grad_years
+import pandas as pd
 import os
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
@@ -17,9 +18,17 @@ service = build('sheets', 'v4', credentials=credentials)
 
 sheet = service.spreadsheets()
 result = sheet.values().get(spreadsheetId=SPREADSHEET_ID, range=RANGE).execute()
+values = result.get('values', [])
+# print(values)
+df = pd.DataFrame(values)
 
-# Gets the list of headings
-headings = result['values'][0]
+#replace all non trailing blank values created by Google Sheets API
+#with null values
+df_replace = df.replace([''], ['TBD'])
+
+processed_dataset = df_replace.values.tolist()
+
+# print(processed_dataset[1:])
 
 # helper function
 def mean(numbers):
@@ -40,7 +49,7 @@ def make_competitor_dictionary() -> dict:
     """
     responses = result['values'][1:]
     competitor_dict = {}
-    for response in responses:
+    for response in processed_dataset:
         if response[1] not in competitor_dict and response[2] == 'No':
             competitor_dict[response[1]] = {
                 # 3: O, 4: C, 5: E, 6: A, 7: N -> On the original sheet
@@ -55,14 +64,25 @@ def make_competitor_dictionary() -> dict:
                 'year': get_grad_year(response[1]),
                 'headshot': ''
             }
+            
         elif response[1] not in competitor_dict and response[2] == 'Yes':
-            competitor_dict[response[1]] = {
-                'skills': [int(response[17]), int(response[18]), int(response[19]), int(response[20])],
-                'workingStyle': response[21].split(','),
-            }
+            if response[21] is not None: 
+                competitor_dict[response[1]] = {
+                    'skills': [int(response[17]), int(response[18]), int(response[19]), int(response[20])],
+                    'workingStyle': response[21].split(',')
+                }
+            else:
+                competitor_dict[response[1]] = {
+                    'skills': [int(response[17]), int(response[18]), int(response[19]), int(response[20])],
+                    'workingStyle': []
+                }
         elif response[1] in competitor_dict and response[2] == 'Yes':
-            competitor_dict[response[1]]['skills'] = [mean(i) for i in zip(competitor_dict[response[1]]['skills'],[int(response[17]), int(response[18]), int(response[19]), int(response[20])])]
-            competitor_dict[response[1]]['workingStyle'].append(response[21].split(','))
+            if response[21] is not None:
+                competitor_dict[response[1]]['skills'] = [mean(i) for i in zip(competitor_dict[response[1]]['skills'],[int(response[17]), int(response[18]), int(response[19]), int(response[20])])]
+                competitor_dict[response[1]]['workingStyle'].append(response[21].split(','))
+            else:
+                competitor_dict[response[1]]['skills'] = [mean(i) for i in zip(competitor_dict[response[1]]['skills'],[int(response[17]), int(response[18]), int(response[19]), int(response[20])])]
+
         elif response[1] in competitor_dict and response[2] == 'No':
             competitor_dict[response[1]]['skills'] = [mean(i) for i in zip(competitor_dict[response[1]]['skills'],[int(response[8]), int(response[9]), int(response[10]), int(response[11])])]
             competitor_dict[response[1]]['workingStyle'].append(response[13].split(','))
@@ -71,16 +91,14 @@ def make_competitor_dictionary() -> dict:
             competitor_dict[response[1]]['workingStyle'] = response[13].split(',')
             competitor_dict[response[1]]['developmentGoals'] = response[14].split(',')
             competitor_dict[response[1]]['notableCompetitions'] = response[15].split(',')
-            competitor_dict[response[1]]['researchSubject'] = response[16]
             competitor_dict[response[1]]['year'] = get_grad_year(response[1])
             competitor_dict[response[1]]['headshot'] = ''
+            competitor_dict[response[1]]['researchSubject'] = response[16]
+
 
     return competitor_dict
 
 if '__main__' == __name__:
-    # print(make_competitor_dictionary())
+    print(make_competitor_dictionary())
     # print(get_grad_year('Michael Dawes'))
-    pass
-
-
-
+    # pass

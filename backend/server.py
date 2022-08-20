@@ -20,7 +20,10 @@ def healthCheck():
 @app.route('/api/rcct/prod/getdata', methods=['GET'])
 def get_data():
     data = make_competitor_dictionary()
-    return jsonify(data)
+    try:
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({'error': str(e)})
 
 @app.route('/verify/<string:password>', methods=['POST'])
 def verify(password: str):
