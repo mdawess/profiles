@@ -51,45 +51,29 @@ def make_competitor_dictionary() -> dict:
                 'workingStyle': response[13].split(','),
                 'developmentGoals': response[14].split(','),
                 'notableCompetitions': response[15].split(','),
-                'researchSubject': '',
+                'researchSubject': response[16],
                 'year': get_grad_year(response[1]),
                 'headshot': ''
             }
-            try:
-                competitor_dict[response[1]]['researchSubject'] = response[16]
-            except:
-                pass
         elif response[1] not in competitor_dict and response[2] == 'Yes':
             competitor_dict[response[1]] = {
                 'skills': [int(response[17]), int(response[18]), int(response[19]), int(response[20])],
-                
+                'workingStyle': response[21].split(','),
             }
-            try:
-                competitor_dict[response[1]]['workingStyle'] = response[21].split(',')
-            except:
-                competitor_dict[response[1]]['workingStyle'] = []
         elif response[1] in competitor_dict and response[2] == 'Yes':
             competitor_dict[response[1]]['skills'] = [mean(i) for i in zip(competitor_dict[response[1]]['skills'],[int(response[17]), int(response[18]), int(response[19]), int(response[20])])]
-            try:
-                competitor_dict[response[1]]['workingStyle'].append(response[21].split(','))
-            except:
-                pass
+            competitor_dict[response[1]]['workingStyle'].append(response[21].split(','))
         elif response[1] in competitor_dict and response[2] == 'No':
             competitor_dict[response[1]]['skills'] = [mean(i) for i in zip(competitor_dict[response[1]]['skills'],[int(response[8]), int(response[9]), int(response[10]), int(response[11])])]
             competitor_dict[response[1]]['workingStyle'].append(response[13].split(','))
             competitor_dict[response[1]]['ocean'] = [int(response[3]), int(response[4]), int(response[5]), int(response[6]), int(response[7])]
             competitor_dict[response[1]]['workExperience'] = response[12].split(',')
             competitor_dict[response[1]]['workingStyle'] = response[13].split(',')
+            competitor_dict[response[1]]['developmentGoals'] = response[14].split(',')
+            competitor_dict[response[1]]['notableCompetitions'] = response[15].split(',')
+            competitor_dict[response[1]]['researchSubject'] = response[16]
             competitor_dict[response[1]]['year'] = get_grad_year(response[1])
             competitor_dict[response[1]]['headshot'] = ''
-            try:
-                competitor_dict[response[1]]['researchSubject'] = response[16]
-                competitor_dict[response[1]]['developmentGoals'] = response[14].split(',')
-                competitor_dict[response[1]]['notableCompetitions'] = response[15].split(',')
-            except:
-                competitor_dict[response[1]]['researchSubject'] = ''
-                competitor_dict[response[1]]['developmentGoals'] = ''
-                competitor_dict[response[1]]['notableCompetitions'] = ''
 
     return competitor_dict
 
