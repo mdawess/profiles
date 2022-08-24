@@ -27,6 +27,7 @@ def get_data():
 
 @app.route('/verify/<string:password>', methods=['POST'])
 def verify(password: str):
+    # Need to update this so it works with cold start
     if check_password(password):
         return jsonify({'status': 'verified'})
     else:
