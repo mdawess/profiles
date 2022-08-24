@@ -10,20 +10,25 @@ export default function Experience(props: ExperienceProps) {
     const { experiences } = props;
     return (
         <div className='experiences'>
+            {/* {formatExperience(experiences)} */}
             {formatExperience(experiences)}
         </div>
     )
 }
 
-const formatExperience = (experience: any) => {
+const formatExperience = (experience: string[]) => {
     let workExp = '';
-    
-    for (let i = 0; i < experience.length; i++) {
-        if (i === 0) {
-            workExp += experience[i];
-        } else {
-            workExp += ', ' + experience[i];
+    try {
+        for (let i = 0; i < experience.length; i++) {
+            if (i === 0) {
+                workExp += experience[i];
+            } else {
+                workExp += ', ' + experience[i];
+            }
         }
+    } catch (error) {
+        // console.log(error);
+        return '';
     }
 
     return workExp;
