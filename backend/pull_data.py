@@ -54,7 +54,7 @@ def make_competitor_dictionary() -> dict:
             competitor_dict[response[1]] = {
                 # 3: O, 4: C, 5: E, 6: A, 7: N -> On the original sheet
                 # This is altered to fit w/ frontend code
-                'ocean': [int(response[3]), int(response[7]), int(response[6]), int(response[5]), int(response[4])],
+                'ocean': [float(response[3]), float(response[7]), float(response[6]), float(response[5]), float(response[4])],
                 'skills': [int(response[8]), int(response[9]), int(response[10]), int(response[11])],
                 'workExperience': response[12].split(','),
                 'workingStyle': response[13].split(','),
